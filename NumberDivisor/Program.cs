@@ -10,15 +10,15 @@ namespace NumberDivisor
     {
         static void Main(string[] args)
         {
-            var arraySize = 10000000;
+            var arraySize = 10000;
             var array= BuildAnArray(arraySize);
 
             var stopwatch = Stopwatch.StartNew();
             var firstArray = array.Take(array.Length / 2);
             var lastArray = array.Skip(array.Length / 2);
 
-            var arrayProcessorFirst = new ArrayProcessor(firstArray.ToArray(), 0, firstArray.ToList().Count);
-            var arrayProcessorLast = new ArrayProcessor(lastArray.ToArray(), 0, lastArray.ToList().Count);
+            var arrayProcessorFirst = new ArrayProcessor(firstArray.ToArray(), 0, firstArray.ToList().Count, firstArray.Count());
+            var arrayProcessorLast = new ArrayProcessor(lastArray.ToArray(), 0, lastArray.ToList().Count, firstArray.Count() + lastArray.Count());
 
             Thread firstThread = new Thread(arrayProcessorFirst.CalculateDivisor);
             Thread lastThread = new Thread(arrayProcessorLast.CalculateDivisor);
@@ -32,12 +32,16 @@ namespace NumberDivisor
             firstThread.Join();
             
 
-            var totalSum = arrayProcessorFirst.Sum + arrayProcessorLast.Sum;
+            var totalSum = arrayProcessorFirst.results;
+            totalSum.AddRange(arrayProcessorLast.results);
+
             stopwatch.Stop();
 
             Console.WriteLine($"Elapsed time: {stopwatch.Elapsed.TotalMilliseconds} ms");
-            Console.WriteLine($"The most number is : {totalSum}");
+            var result = totalSum.First(n=> n.Amount == totalSum.Max(m=> m.Amount));
+           
 
+            Console.WriteLine($"The most number is : {result.MostNumber} with {result.Amount} times.");
 
         }
 
