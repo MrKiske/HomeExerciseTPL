@@ -33,13 +33,14 @@ namespace NumberDivisor
             
             try
             {
-                for (int i = 0; i <= array.Length - 1; i++)
+               for (int i = 0; i <= array.Length - 1; i++)
                 {
                     int number = array[i];
                     if (number != 0)
                     {
                         int j = 1;
                         int k = 1;
+
                         while (j <= totalNumbers)
                         {
                             if (number % j == 0)
@@ -68,7 +69,7 @@ namespace NumberDivisor
                         }
                     }
                 }
-
+               
                 GroupMostNumber(data);
             }
             catch (Exception ex)
