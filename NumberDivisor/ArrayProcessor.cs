@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace NumberDivisor
 {
@@ -30,10 +31,10 @@ namespace NumberDivisor
 
         public void CalculateDivisor()
         {
-            
             try
             {
-               for (int i = 0; i <= array.Length - 1; i++)
+
+                for (int i = 0; i <= array.Length - 1; i++)
                 {
                     int number = array[i];
                     if (number != 0)
@@ -48,7 +49,7 @@ namespace NumberDivisor
                                 if (data.Any(d => d.Key == number.ToString()))
                                 {
                                     data.Remove(number.ToString());
-                                    data.Add(number.ToString(), k); ;
+                                    data.Add(number.ToString(), k); 
                                 }
                                 else
                                 {
@@ -69,7 +70,7 @@ namespace NumberDivisor
                         }
                     }
                 }
-               
+
                 GroupMostNumber(data);
             }
             catch (Exception ex)
@@ -78,7 +79,7 @@ namespace NumberDivisor
             }
         }
 
-        private void GroupMostNumber(Dictionary<string, int> data)
+          public void GroupMostNumber(Dictionary<string, int> data)
         {
        
            var list= (data
