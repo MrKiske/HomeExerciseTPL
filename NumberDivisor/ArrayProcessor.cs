@@ -24,7 +24,21 @@ namespace NumberDivisor
 
         public void CalculateDivisor()
         {
-            
+            try
+            {
+                for (int i = 0; i <= array.Length - 1; i++)
+                {
+                    int number = array[i];
+                    if (number != 1)
+                    { 
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write($"Error: {ex.Message}");
+            }
 
         }
     }
